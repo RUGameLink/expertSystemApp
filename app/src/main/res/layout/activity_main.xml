@@ -65,11 +65,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/purple_200"
+            android:enabled="false"
             android:text="@string/submit_text"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:textStyle="bold">
-        </Button>
+            android:textStyle="bold"></Button>
     </LinearLayout>
 
 </ScrollView>

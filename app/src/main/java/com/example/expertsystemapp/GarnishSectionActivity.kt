@@ -3,18 +3,18 @@ package com.example.expertsystemapp
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.expertsystemapp.Services.Constants
 import com.example.expertsystemapp.Services.Question
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class GarnishSectionActivity: AppCompatActivity(), View.OnClickListener {
     //region Элементы управления
     private lateinit var questionText: TextView
     private lateinit var foodImg: ImageView
@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var mCurrentPosition: Int = 1
     private var mQuestionsList: ArrayList<Question> ?= null
     private var mSelectedOptionPosition: Int = 0
+    private var result = ""
     //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         init()
 
-        mQuestionsList = Constants.getTheFirstSection()
+        mQuestionsList = Constants.getTheSecondSection()
         setQuestion()
 
         optionOne.setOnClickListener(this)
@@ -59,6 +60,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         foodImg.setImageResource(question.image)
         optionOne.text = question!!.optionOne
         optionTwo.text = question!!.optionTwo
+
+        result = question!!.result
     }
 
     private fun defaultOptionsView(){
@@ -88,19 +91,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.submit_btn -> {
                 if(mSelectedOptionPosition == 0){
                     mCurrentPosition ++
-                //    Toast.makeText(this, "Выбери ответ!", Toast.LENGTH_SHORT).show()
+                    //    Toast.makeText(this, "Выбери ответ!", Toast.LENGTH_SHORT).show()
+
                     when{
                         mCurrentPosition <= mQuestionsList!!.size -> {
                             setQuestion()
                         } else -> {
-                        Toast.makeText(this, "Выбираю блюдо...", Toast.LENGTH_SHORT).show()
                         val i = Intent(this, ResultActivity::class.java) //Инициализация интента для открытия новой активити
                         i.putExtra ( "Гарнир", "Нет" )
                         i.putExtra ( "Основа", "Нет" )
                         startActivity(i) //Старт активити
                     }
                     }
-
                 }
                 else{
                     val question = mQuestionsList?.get(mCurrentPosition - 1)
@@ -110,11 +112,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     else{
                         submitBtn.text = "Далее"
-
                     }
-
                     mSelectedOptionPosition = 0
-
                 }
             }
         }
@@ -124,7 +123,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when(answer){
             1 -> {
                 Toast.makeText(this, "Ответ 1", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, GarnishSectionActivity::class.java) //Инициализация интента для открытия новой активити
+
+                val i = Intent(this, ResultActivity::class.java) //Инициализация интента для открытия новой активити
+                i.putExtra ( "Гарнир", "$result" )
+                i.putExtra ( "Основа", "Нет" )
                 startActivity(i) //Старт активити
             }
             2 -> {
@@ -156,5 +158,4 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         optionTwo = findViewById(R.id.option_two)
         submitBtn = findViewById(R.id.submit_btn)
     }
-    //endregion
 }

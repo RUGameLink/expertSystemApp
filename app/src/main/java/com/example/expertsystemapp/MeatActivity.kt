@@ -1,5 +1,6 @@
 package com.example.expertsystemapp
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -26,12 +27,16 @@ class MeatActivity: AppCompatActivity(), View.OnClickListener {
     private var mCurrentPosition: Int = 1
     private var mQuestionsList: ArrayList<Question> ?= null
     private var mSelectedOptionPosition: Int = 0
+    private lateinit var p1: String
+    private lateinit var p2: String
+    private var result = ""
     //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        p1 = intent.getStringExtra("Гарнир").toString()
+        p2 = intent.getStringExtra("Основа").toString()
         init()
 
         mQuestionsList = Constants.getTheFourthSection()
@@ -58,6 +63,7 @@ class MeatActivity: AppCompatActivity(), View.OnClickListener {
         foodImg.setImageResource(question.image)
         optionOne.text = question!!.optionOne
         optionTwo.text = question!!.optionTwo
+        result = question!!.result
     }
 
     private fun defaultOptionsView(){
@@ -94,6 +100,10 @@ class MeatActivity: AppCompatActivity(), View.OnClickListener {
                             setQuestion()
                         } else -> {
                         Toast.makeText(this, "Выбираю блюдо...", Toast.LENGTH_SHORT).show()
+                        val i = Intent(this, ResultActivity::class.java) //Инициализация интента для открытия новой активити
+                        i.putExtra ( "Гарнир", "$p1" )
+                        i.putExtra ( "Основа", "Баранина" )
+                        startActivity(i) //Старт активити
                     }
                     }
                 }
@@ -115,7 +125,10 @@ class MeatActivity: AppCompatActivity(), View.OnClickListener {
     private fun answerView(answer: Int){
         when(answer){
             1 -> {
-                Toast.makeText(this, "Ответ 1", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, MeatActivity::class.java) //Инициализация интента для открытия новой активити
+                i.putExtra ( "Гарнир", "$p1" )
+                i.putExtra ( "Основа", "$result" )
+                startActivity(i) //Старт активити
             }
             2 -> {
                 Toast.makeText(this, "Ответ 2", Toast.LENGTH_SHORT).show()

@@ -66,7 +66,7 @@ object Constants{
         return questionsList
     }
 
-    fun getTheThirdSection(): ArrayList<Question>{
+    fun getTheFourthSection(): ArrayList<Question>{
         val questionsList = ArrayList<Question>()
 
         val que1 = Question(
@@ -99,25 +99,16 @@ object Constants{
         )
         questionsList.add(que3)
 
-        val que4 = Question(
-            4,
-            "Со бараниной?",
-            R.drawable.sheep,
-            "Да",
-            "Нет",
-            "Баранина"
-        )
-        questionsList.add(que4)
         return questionsList
     }
 
-    fun getTheFourthSection(): ArrayList<Question>{
+    fun getTheThirdSection(): ArrayList<Question>{
         val questionsList = ArrayList<Question>()
 
         val que1 = Question(
             1,
             "С мясом?",
-            R.drawable.chicken,
+            R.drawable.meat,
             "Да",
             "Нет",
             "Мясо"
@@ -127,7 +118,7 @@ object Constants{
         val que2 = Question(
             2,
             "С овощами?",
-            R.drawable.cow,
+            R.drawable.vegetables,
             "Да",
             "Нет",
             "Овощи"

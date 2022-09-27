@@ -34,6 +34,7 @@ class ResultActivity: AppCompatActivity() {
         restartBtn.setOnClickListener {
             val i = Intent(this, MainActivity::class.java) //Инициализация интента для открытия новой активити
             startActivity(i) //Старт активити
+            finish()
         }
 
         urlBtn.setOnClickListener {
@@ -41,10 +42,6 @@ class ResultActivity: AppCompatActivity() {
             i.data = Uri.parse(url)
             startActivity(i)
         }
-
-        var res = "Гарнирчик: ${p1}\n" +
-                "Основа: ${p2}"
-      //  resultText.text = res
     }
 
     private fun checkList(p1: String, p2: String) {

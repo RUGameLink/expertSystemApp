@@ -101,6 +101,7 @@ class GarnishSectionActivity: AppCompatActivity(), View.OnClickListener {
                         i.putExtra ( "Гарнир", "Бутерброд" )
                         i.putExtra ( "Основа", "Нет" )
                         startActivity(i) //Старт активити
+                        finish()
                     }
                     }
                 }
@@ -122,15 +123,13 @@ class GarnishSectionActivity: AppCompatActivity(), View.OnClickListener {
     private fun answerView(answer: Int){
         when(answer){
             1 -> {
-                Toast.makeText(this, "Ответ 1", Toast.LENGTH_SHORT).show()
-
                 val i = Intent(this, FoundationActivity::class.java) //Инициализация интента для открытия новой активити
                 i.putExtra ( "Гарнир", "$result" )
                 i.putExtra ( "Основа", "Нет" )
                 startActivity(i) //Старт активити
+                finish()
             }
             2 -> {
-                Toast.makeText(this, "Ответ 2", Toast.LENGTH_SHORT).show()
             }
         }
 

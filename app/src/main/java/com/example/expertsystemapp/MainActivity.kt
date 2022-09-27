@@ -88,22 +88,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.submit_btn -> {
                 if(mSelectedOptionPosition == 0){
                     mCurrentPosition ++
-                //    Toast.makeText(this, "Выбери ответ!", Toast.LENGTH_SHORT).show()
                     when{
                         mCurrentPosition <= mQuestionsList!!.size -> {
                             setQuestion()
                         } else -> {
-                        Toast.makeText(this, "Выбираю блюдо...", Toast.LENGTH_SHORT).show()
                         val i = Intent(this, ResultActivity::class.java) //Инициализация интента для открытия новой активити
                         i.putExtra ( "Гарнир", "Нет" )
                         i.putExtra ( "Основа", "Нет" )
                         startActivity(i) //Старт активити
+                        finish()
                     }
                     }
 
                 }
                 else{
-                    val question = mQuestionsList?.get(mCurrentPosition - 1)
                     answerView(mSelectedOptionPosition)
                     if (mCurrentPosition == mQuestionsList!!.size){
                         submitBtn.text = "Узнать результат"
@@ -123,12 +121,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun answerView(answer: Int){
         when(answer){
             1 -> {
-                Toast.makeText(this, "Ответ 1", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, GarnishSectionActivity::class.java) //Инициализация интента для открытия новой активити
                 startActivity(i) //Старт активити
+                finish()
             }
             2 -> {
-                Toast.makeText(this, "Ответ 2", Toast.LENGTH_SHORT).show()
             }
         }
 

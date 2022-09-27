@@ -99,11 +99,11 @@ class MeatActivity: AppCompatActivity(), View.OnClickListener {
                         mCurrentPosition <= mQuestionsList!!.size -> {
                             setQuestion()
                         } else -> {
-                        Toast.makeText(this, "Выбираю блюдо...", Toast.LENGTH_SHORT).show()
                         val i = Intent(this, ResultActivity::class.java) //Инициализация интента для открытия новой активити
                         i.putExtra ( "Гарнир", "$p1" )
                         i.putExtra ( "Основа", "Баранина" )
                         startActivity(i) //Старт активити
+                        finish()
                     }
                     }
                 }
@@ -129,9 +129,9 @@ class MeatActivity: AppCompatActivity(), View.OnClickListener {
                 i.putExtra ( "Гарнир", "$p1" )
                 i.putExtra ( "Основа", "$result" )
                 startActivity(i) //Старт активити
+                finish()
             }
             2 -> {
-                Toast.makeText(this, "Ответ 2", Toast.LENGTH_SHORT).show()
             }
         }
 

@@ -125,7 +125,7 @@ class MeatActivity: AppCompatActivity(), View.OnClickListener {
     private fun answerView(answer: Int){
         when(answer){
             1 -> {
-                val i = Intent(this, MeatActivity::class.java) //Инициализация интента для открытия новой активити
+                val i = Intent(this, ResultActivity::class.java) //Инициализация интента для открытия новой активити
                 i.putExtra ( "Гарнир", "$p1" )
                 i.putExtra ( "Основа", "$result" )
                 startActivity(i) //Старт активити

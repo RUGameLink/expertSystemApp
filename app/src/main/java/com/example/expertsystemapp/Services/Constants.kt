@@ -127,4 +127,29 @@ object Constants{
 
         return questionsList
     }
+
+    fun getFoodList(): ArrayList<Food>{
+        val foodList = ArrayList<Food>()
+
+        val food1 = Food(
+            0,
+            "СУП С КАРТОШКОЙ И КУРИЦЕЙ",
+        "Суп",
+        "Курица",
+        "https://1000.menu/cooking/62719-sup-s-kartoshkoi-i-kuricei",
+            R.drawable.soup
+        )
+        foodList.add(food1)
+
+        val food2 = Food(
+            1,
+            "Щи с говядинкой и капусткой",
+            "Суп",
+            "Говядина",
+            "https://1000.menu/cooking/39917-klassicheskie-shchi-iz-svejei-kapusty",
+            R.drawable.soup
+        )
+        foodList.add(food2)
+        return foodList
+    }
 }
